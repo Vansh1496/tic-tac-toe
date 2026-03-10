@@ -1,0 +1,124 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background: linear-gradient(135deg,#007cf0,#00dfd8);
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.container{
+    text-align:center;
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.2);
+}
+
+h1{
+    font-size:50px;
+    margin-bottom:15px;
+    color:#333;
+    letter-spacing:3px;
+}
+
+button{
+    padding:10px 20px;
+    margin:10px;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.start{
+    background:#28a745;
+    color:white;
+}
+
+.start:hover{
+    background:#218838;
+}
+
+.restart{
+    background:#dc3545;
+    color:white;
+}
+
+.restart:hover{
+    background:#c82333;
+}
+
+.winner{
+    margin:10px;
+    font-size:20px;
+    font-weight:bold;
+    color:#333;
+}
+
+.gameBoard{
+    margin-top:20px;
+    height:360px;
+    width:360px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    grid-template-rows:repeat(3,1fr);
+    gap:10px;
+}
+
+.pad{
+    background:#f8f9fa;
+    border-radius:15px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:60px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.2s;
+}
+
+.pad:hover{
+    background:#e9ecef;
+    transform:scale(1.05);
+}
+
+.userPress{
+    background:#d1ecf1;
+}
+
+.highlight{
+    border:3px solid #007bff;
+}
+
+.winning{
+    animation: win 1s infinite;
+}
+
+@keyframes win{
+    0%{background:#28a745;color:white;}
+    50%{background:white;color:black;}
+    100%{background:#28a745;color:white;}
+}
+.scoreboard{
+    display:flex;
+    justify-content:center;
+    gap:40px;
+    margin:10px 0;
+}
+
+.score{
+    background:#f1f1f1;
+    padding:10px 20px;
+    border-radius:10px;
+    font-size:18px;
+    font-weight:bold;
+    box-shadow:0 5px 10px rgba(0,0,0,0.2);
+}
