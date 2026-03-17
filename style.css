@@ -122,3 +122,8 @@ button{
     font-weight:bold;
     box-shadow:0 5px 10px rgba(0,0,0,0.2);
 }
+
+.turn{
+    background-color: #218838;
+    transition-duration: 0.5s;
+}
