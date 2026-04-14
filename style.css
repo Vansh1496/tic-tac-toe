@@ -6,7 +6,7 @@
 }
 
 body{
-    background: linear-gradient(135deg,#007cf0,#00dfd8);
+    background: linear-gradient(90deg,  #00dfd8 200px,#007cf0);
     height:100vh;
     display:flex;
     justify-content:center;
@@ -64,7 +64,7 @@ button{
 }
 
 .gameBoard{
-    margin-top:20px;
+    margin:auto;
     height:360px;
     width:360px;
     display:grid;
@@ -83,6 +83,22 @@ button{
     font-weight:bold;
     cursor:pointer;
     transition:0.2s;
+    color: white;
+     /* Creates outline effect */
+}
+.X{
+        text-shadow:
+        -1px -1px 10px rgb(244, 0, 252),  
+         1px -1px 10px rgb(244, 0, 252),
+        -1px  1px 10px rgb(244, 0, 252),
+         1px  1px 10px rgb(244, 0, 252);
+}
+.O{
+    text-shadow:
+        -1px -1px 10px rgb(0, 4, 252),  
+         1px -1px 10px rgb(0, 4, 252),
+        -1px  1px 10px rgb(0, 4, 252),
+         1px  1px 10px rgb(0, 4, 252);
 }
 
 .pad:hover{
@@ -98,9 +114,7 @@ button{
     border:3px solid #007bff;
 }
 
-.winning{
-    animation: win 1s infinite;
-}
+
 
 @keyframes win{
     0%{background:#28a745;color:white;}
@@ -123,7 +137,227 @@ button{
     box-shadow:0 5px 10px rgba(0,0,0,0.2);
 }
 
-.turn{
+.bg{
     background-color: #218838;
-    transition-duration: 0.5s;
+}
+
+
+/* AI */
+
+#aiMode {
+    position: relative;
+    padding: 12px 25px;
+    font-size: 16px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    color: #00fff7;
+    background: #0a0a0f;
+    overflow: hidden;
+    transition: 0.3s;
+    letter-spacing: 1px;
+}
+
+/* Glow border */
+#aiMode::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: 12px;
+    background: linear-gradient(
+        45deg,
+        #00fff7,
+        #007cf0,
+        #00fff7
+    );
+    z-index: -1;
+    animation: glowMove 3s linear infinite;
+}
+
+/* inner background */
+#aiMode::after {
+    content: "";
+    position: absolute;
+    inset: 2px;
+    background: #0a0a0f;
+    border-radius: 10px;
+    z-index: -1;
+}
+
+/* hover effect */
+#aiMode:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px #00fff7;
+}
+
+/* animation */
+@keyframes glowMove {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+}
+
+.activeAI {
+    box-shadow: 0 0 25px #00fff7, 0 0 50px #007cf0;
+    color: white;
+}
+
+
+
+.aiBoard {
+    border: 2px solid #00fff7;
+    box-shadow: 0 0 20px #00fff7;
+    animation: pulseAI 2s infinite;
+}
+
+@keyframes pulseAI {
+    0% { box-shadow: 0 0 10px #00fff7; }
+    50% { box-shadow: 0 0 30px #007cf0; }
+    100% { box-shadow: 0 0 10px #00fff7; }
+}
+
+
+
+.aiBoard .pad {
+    border: 1px solid rgba(0,255,247,0.3);
+    position: relative;
+    transition: 0.3s;
+}
+
+/* hover glow */
+.aiBoard .pad:hover {
+    box-shadow: 0 0 15px #00fff7;
+    transform: scale(1.05);
+}
+
+/* animated border */
+.aiBoard .pad::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: 15px;
+    
+    opacity: 0;
+    transition: 0.3s;
+}
+
+/* activate animation */
+
+
+
+.winning{
+    animation: win 1s infinite;
+}
+
+.restarting{
+    animation: xyz 1s ease-in 0 1;
+}
+@keyframes xyz {
+    0%{
+        border: 2px solid black;
+        transform: scale(100%);
+    }
+    50%{
+        border: 2px solid black;
+        transform: scale(0%);
+    }
+    100%{
+        border: none;
+        transform: scale(100%);
+    }
+}
+
+
+.modePopup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.popupBox {
+    background: #0a0a0f;
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    border: 2px solid #00fff7;
+    box-shadow: 0 0 25px #00fff7;
+    animation: popupAnim 0.3s ease;
+}
+
+.popupBox h2 {
+    margin-bottom: 20px;
+    color: white;
+}
+
+.popupBox button {
+    display: block;
+    width: 220px;
+    margin: 10px auto;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+/* AI Button */
+#playAI {
+    background: linear-gradient(45deg, #00fff7, #007cf0);
+    color: black;
+}
+
+#playAI:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px #00fff7;
+}
+
+/* Friend Button */
+#playFriend {
+    background: linear-gradient(45deg, #ff7b00, #ff3c00);
+    color: white;
+}
+
+#playFriend:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px #ff7b00;
+}
+
+@keyframes popupAnim {
+    from {
+        transform: scale(0.7);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+#difficultyBox {
+    margin-top: 10px;
+}
+
+.diff {
+    padding: 8px 15px;
+    margin: 5px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background: #222;
+    color: white;
+    transition: 0.3s;
+}
+
+.diff:hover {
+    background: #00fff7;
+    color: black;
+    box-shadow: 0 0 10px #00fff7;
 }

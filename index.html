@@ -10,15 +10,16 @@
     <div class="container">
         <h1>TIC TAC TOE</h1>
         <div class="scoreboard">
-    <div class="score scoreBoardX">
-        Player X : <span id="scoreX">0</span>
-    </div>
-
-    <div class="score scoreBoardO">
-        Player O : <span id="scoreO">0</span>
-    </div>
-</div>
-        <button class="start">START</button>
+            <div class="score" id="playerX">
+                Player X : <span id="scoreX">0</span>
+            </div>
+            <div class="score" id="playerO">
+                Player O : <span id="scoreO">0</span>
+            </div>
+        </div>
+        <div class="score">
+            Turn : <span id="turn"></span>
+        </div>  
         <button class="restart">RESTART</button>
         <h4 class="winner"></h4>
         <div class="gameBoard">
@@ -31,6 +32,18 @@
             <div class="pad seven" data-value="6"></div>
             <div class="pad eight" data-value="7"></div>
             <div class="pad nine" data-value="8"></div>
+        </div>
+    </div>
+    <div class="modePopup" id="modePopup">
+        <div class="popupBox">
+            <h2>Choose Game Mode</h2>
+            <button id="playAI">🤖 Play vs AI</button>
+            <div id="difficultyBox" style="display:none;">
+                <button class="diff" data-level="easy">Easy 😇</button>
+                <button class="diff" data-level="medium">Medium 😠</button>
+                <button class="diff" data-level="hard">Hard 😈</button>
+            </div>  
+            <button id="playFriend">👥 Play with Friend</button>
         </div>
     </div>
     <script src="app.js"></script>
